@@ -673,7 +673,7 @@
 --------------------------------
 -- Gets position Z coordinate of this node.<br>
 -- see setPositionZ(float)<br>
--- return the position Z coordinate of this node.
+-- P@return the position Z coordinate of this node.
 -- @function [parent=#Node] getPositionZ 
 -- @param self
 -- @return float#float ret (return value: float)

@@ -87,7 +87,6 @@ public:
      *  Creates binary data from a file.
      *  @return A data object.
      */
-    virtual void doDataEncrypt(std::string& strFilePath, unsigned char* szData, unsigned long nSize);
     virtual Data getDataFromFile(const std::string& filename);
     
     /**

@@ -87,7 +87,6 @@ set(lua_bindings_manual_files
     manual/cocos2d/lua_cocos2dx_manual.cpp
     manual/cocos2d/lua_cocos2dx_physics_manual.cpp
     manual/cocosdenshion/lua_cocos2dx_cocosdenshion_manual.cpp
-    manual/3d/lua_cocos2dx_3d_manual.cpp
     manual/cocosbuilder/CCBProxy.cpp
     manual/cocosbuilder/lua_cocos2dx_cocosbuilder_manual.cpp
     manual/cocosdenshion/lua_cocos2dx_cocosdenshion_manual.cpp

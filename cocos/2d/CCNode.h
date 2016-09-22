@@ -388,7 +388,7 @@ public:
      *
      * @see setPositionZ(float)
      *
-     * @return the position Z coordinate of this node.
+     * P@return the position Z coordinate of this node.
      */
     virtual float getPositionZ() const;
     CC_DEPRECATED_ATTRIBUTE virtual float getVertexZ() const { return getPositionZ(); }

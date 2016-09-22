@@ -1333,25 +1333,6 @@ long FileUtils::getFileSize(const std::string &filepath)
     }
 }
 
-void FileUtils::doDataEncrypt(std::string& strFilePath, unsigned char* szData, unsigned long nSize)
-{
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-    static const unsigned long ENCRYPT_LEN = 4;
-    static unsigned char ENCRYPT_CODE[ENCRYPT_LEN] = { 'y', 'u', 'h', 'e' };
-    if (strFilePath.find(".jpg") != string::npos)
-    {
-        unsigned long len = ENCRYPT_LEN < nSize ? ENCRYPT_LEN : nSize;
-        for (unsigned long i = 0; i < len; i++)
-            szData[i] = szData[i] ^ ENCRYPT_CODE[i];
-    }
-    else if (strFilePath.find(".lua") != string::npos)
-    {
-        for (unsigned long i = 0; i < nSize; i++)
-            szData[i] = szData[i] ^ ENCRYPT_CODE[i % ENCRYPT_LEN];
-    }
-#endif
-}
-
 
 //////////////////////////////////////////////////////////////////////////
 // Notification support when getFileData from invalid file path.

@@ -1,30 +1,6 @@
-/****************************************************************************
- Copyright (c) 2013-2014 Chukong Technologies Inc.
- 
- http://www.cocos2d-x.org
- 
- Permission is hereby granted, free of charge, to any person obtaining a copy
- of this software and associated documentation files (the "Software"), to deal
- in the Software without restriction, including without limitation the rights
- to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- copies of the Software, and to permit persons to whom the Software is
- furnished to do so, subject to the following conditions:
- 
- The above copyright notice and this permission notice shall be included in
- all copies or substantial portions of the Software.
- 
- THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- THE SOFTWARE.
- ****************************************************************************/
 
 #include "LuaBasicConversions.h"
 #include "tolua_fix.h"
-
 
 
 std::unordered_map<std::string, std::string>  g_luaType;
@@ -1874,49 +1850,7 @@ bool luaval_to_std_vector_int(lua_State* L, int lo, std::vector<int>* ret, const
     return ok;
 }
 
-bool luaval_to_mesh_vertex_attrib(lua_State* L, int lo, cocos2d::MeshVertexAttrib* ret, const char* funcName)
-{
-    if (nullptr == L || nullptr == ret || lua_gettop(L) < lo)
-        return false;
-    
-    tolua_Error tolua_err;
-    bool ok = true;
-    
-    if (!tolua_istable(L, lo, 0, &tolua_err))
-    {
-#if COCOS2D_DEBUG >=1
-        luaval_to_native_err(L,"#ferror:",&tolua_err,funcName);
-#endif
-        ok = false;
-    }
-    
-    
-    if (ok)
-    {
-        lua_pushstring(L, "size");                  /* L: paramStack key */
-        lua_gettable(L,lo);                         /* L: paramStack paramStack[lo][key] */
-        ret->size  = (GLint)lua_tonumber(L, -1);
-        lua_pop(L,1);
-        
-        lua_pushstring(L, "type");                  /* L: paramStack key */
-        lua_gettable(L,lo);                         /* L: paramStack paramStack[lo][key] */
-        ret->type  = (GLenum)lua_tonumber(L, -1);
-        lua_pop(L,1);
-        
-        lua_pushstring(L, "vertexAttrib");          /* L: paramStack key */
-        lua_gettable(L,lo);                         /* L: paramStack paramStack[lo][key] */
-        ret->type  = (GLenum)lua_tonumber(L, -1);
-        lua_pop(L,1);
-        
-        lua_pushstring(L, "vertexAttrib");          /* L: paramStack key */
-        lua_gettable(L,lo);                         /* L: paramStack paramStack[lo][key] */
-        ret->type  = (GLenum)lua_tonumber(L, -1);
-        lua_pop(L,1);
-    }
-    
-    return ok;
-    
-}
+
 
 bool luaval_to_std_vector_float(lua_State* L, int lo, std::vector<float>* ret, const char* funcName)
 {
@@ -2888,29 +2822,6 @@ void vertexattrib_to_luaval(lua_State* L, const cocos2d::VertexAttrib& verAttrib
     lua_rawset(L, -3);
 }
 
-void mesh_vertex_attrib_to_luaval(lua_State* L, const cocos2d::MeshVertexAttrib& inValue)
-{
-    if (nullptr == L)
-        return;
-    
-    lua_newtable(L);
-    
-    lua_pushstring(L, "size");
-    lua_pushnumber(L, (lua_Number)inValue.size);
-    lua_rawset(L, -3);
-    
-    lua_pushstring(L, "type");
-    lua_pushnumber(L, (lua_Number)inValue.type);
-    lua_rawset(L, -3);
-    
-    lua_pushstring(L, "vertexAttrib");
-    lua_pushnumber(L, (lua_Number)inValue.vertexAttrib);
-    lua_rawset(L, -3);
-    
-    lua_pushstring(L, "attribSizeBytes");
-    lua_pushnumber(L, (lua_Number)inValue.attribSizeBytes);
-    lua_rawset(L, -3);
-}
 
 
 void ccvector_std_string_to_luaval(lua_State* L, const std::vector<std::string>& inValue)
